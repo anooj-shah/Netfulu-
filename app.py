@@ -15,7 +15,7 @@ api = Api(app)
 cred = credentials.Certificate('./keys.json')
 default_app = initialize_app(cred)
 db = firestore.client()
-# todo_ref = db.collection('todos')
+sessions_ref = db.collection('sessions')
 
 
 @app.route("/", defaults={'path':''})
@@ -33,7 +33,7 @@ def create():
     try:
         id = request.json['id']
         body = jsonify(uuid.uuid4().hex[:8])
-        todo_ref.document(id).set(body)
+        sessions_ref.document(id).set(body)
         return jsonify({"success": True, "id": body}), 200
     except Exception as e:
         return f"An Error Occured: {e}"
