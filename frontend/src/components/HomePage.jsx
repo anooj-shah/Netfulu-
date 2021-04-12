@@ -7,7 +7,7 @@ import axios from 'axios';
   let history = useHistory();
 
   function createSession() {
-    let sessionId = "1234"
+    let sessionId = "1234";
     history.push({
       pathname: '/session/'+sessionId,
     });
