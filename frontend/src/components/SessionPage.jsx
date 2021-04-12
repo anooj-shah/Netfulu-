@@ -16,7 +16,7 @@ function SessionPage(props) {
 
   // const [participants] = useCollectionData(query, { idField: 'id' });
 
-  const [participants] = useCollectionData(firestore.collection('sessions').doc("1234").collection('participants'));
+  const [participants] = useCollectionData(firestore.collection('sessions').doc(sessionId).collection('participants'));
   console.log("participants", participants);
   return (
     <div className="w-full h-full absolute top-0 left-0">

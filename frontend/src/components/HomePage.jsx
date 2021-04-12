@@ -7,21 +7,21 @@ import axios from 'axios';
   let history = useHistory();
 
   function createSession() {
-    let sessionId = "1234";
-    history.push({
-      pathname: '/session/'+sessionId,
-    });
-    // axios.get('http://localhost:5000/createSession')
-    // .then(response => {
-    //   console.log("Response", response);
-    //   let sessionId = 1234;
-    //   history.push({
-    //     pathname: '/session/'+sessionId,
-    //   });
-    // })
-    // .catch(err => {
-    //   console.log("Error", err);
-    // })
+    // let sessionId = "1234";
+    // history.push({
+    //   pathname: '/session/'+sessionId,
+    // });
+    axios.get('http://localhost:5000/createSession')
+    .then(response => {
+      console.log("Response", response);
+      let sessionId = response.data.id;
+      history.push({
+        pathname: '/session/'+sessionId,
+      });
+    })
+    .catch(err => {
+      console.log("Error", err);
+    })
   }
   return (
     <div className="w-full h-full absolute top-0 left-0">
