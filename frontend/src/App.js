@@ -7,7 +7,7 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path='/home' component={HomePage} />
+        <Route exact path='/' component={HomePage} />
         <Route exact path='/session/:sessionId' component={SessionPage} />
       </Switch>
     </Router>
