@@ -1,10 +1,8 @@
 
-from flask import Flask, send_from_directory
+from flask import Flask, send_from_directory, jsonify
 from flask_restful import Api, Resource, reqparse
-from flask_cors import CORS #comment this on deployment
-# from api.HelloApiHandler import HelloApiHandler
-import firebase_admin
-from firebase_admin import credentials
+from flask_cors import CORS 
+from firebase_admin import credentials, firestore, initialize_app
 import uuid
 
 
@@ -28,15 +26,14 @@ def home():
   return object1
 
 
-@app.route('/createSession', methods=['POST'])
+@app.route('/createSession', methods=['GET'])
 def create():
-    try:
-        id = request.json['id']
-        body = jsonify(uuid.uuid4().hex[:8])
-        sessions_ref.document(id).set(body)
-        return jsonify({"success": True, "id": body}), 200
-    except Exception as e:
-        return f"An Error Occured: {e}"
+  try:
+    sessionId = uuid.uuid4().hex[:6]
+    sessions_ref.document(sessionId).set({})
+    return jsonify({"success": True, "id": sessionId}), 200
+  except Exception as e:
+    return f"An Error Occured: {e}"
 
 
 # api.add_resource(HelloApiHandler, '/flask/hello')
