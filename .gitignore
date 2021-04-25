@@ -133,5 +133,3 @@ frontend/package.json
 node_modules/.yarn-integrity
 recommender/ratings.csv
 recommender/movies_metadata.csv
-
-data/
