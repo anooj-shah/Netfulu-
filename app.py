@@ -1,5 +1,5 @@
 
-from flask import Flask, send_from_directory, jsonify
+from flask import Flask, send_from_directory, jsonify, request
 from flask_restful import Api, Resource, reqparse
 from flask_cors import CORS 
 from firebase_admin import credentials, firestore, initialize_app
@@ -14,6 +14,7 @@ cred = credentials.Certificate('./keys.json')
 default_app = initialize_app(cred)
 db = firestore.client()
 sessions_ref = db.collection('sessions')
+users_ref = db.collection('users')
 
 
 @app.route("/", defaults={'path':''})
@@ -24,6 +25,28 @@ def serve(path):
 def home():
   object1 = {"yp": "yo", "yo": "yo"}
   return object1
+
+@app.route('/login', methods=['POST'])
+def login():
+  # check if they are already in the db
+  body = request.json
+  print(body)
+  username = body['username']
+  doc_ref = db.collection(u'users').document(username)
+  doc = doc_ref.get()
+  result = None
+  if doc.exists:
+    print(f'Document data: {doc.to_dict()}')
+    result = doc.to_dict()
+    return jsonify({"success": True, "id": result['id'], "newUser": False })
+
+  else:
+    print(u'No such document!')
+    userId = uuid.uuid4().hex[:6]
+    users_ref.document(username).set({
+      "id": userId
+    })
+    return jsonify({"success": True, "id": userId, "newUser": True })
 
 
 @app.route('/createSession', methods=['GET'])
