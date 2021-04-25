@@ -26,11 +26,11 @@ function SessionPage(props) {
             <div className="flex flex-col items-center justify-center">
               <div class="flex">
                 <p className="text-black font-bold py-2 px-4 mt-4 text-4xl focus:outline-none">Share with friends:</p>
-                <p className="text-black font-bold bg-blue-200 py-2 px-4 mt-4 text-4xl focus:outline-none rounded rounded-lg">{url+sessionId}</p>
+                <Link className="text-black font-bold bg-blue-200 py-2 px-4 mt-4 text-4xl focus:outline-none rounded-lg" to = {sessionId}>{url+sessionId}</Link>
               </div>
               <br />
               <div>
-                <h1 className="text-black font-bold py-2 px-4 mt-4 text-3xl focus:outline-none">Participants:</h1>
+                <h1 className="text-black font-bold py-2 px-4 mt-4 text-3xl text-center focus:outline-none">Participants:</h1>
                 {
                   participants && (participants.length !== 0) 
                   ? 
