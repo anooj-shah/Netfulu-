@@ -11,8 +11,8 @@ from concurrent import futures
 
 # IMDB_key = os.environ["IMDB"]
 
-movies = pd.read_csv('./data/movies_metadata.csv',header=0,usecols=["id", "imdb_id", "original_title"])
-print(movies)
+# movies = pd.read_csv('./data/movies_metadata.csv',header=0,usecols=["id", "imdb_id", "original_title"])
+# print(movies)
 app = Flask(__name__, static_url_path='', static_folder='frontend/build')
 CORS(app) #comment this on deployment
 api = Api(app)
