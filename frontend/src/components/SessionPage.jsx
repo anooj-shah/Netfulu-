@@ -5,7 +5,8 @@ import {
   Switch,
   Route,
   Link,
-  useParams
+  useParams, 
+  useHistory
 } from "react-router-dom";
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { firestore } from './firebaseContext';
@@ -15,6 +16,8 @@ function SessionPage(props) {
   let url = "http://localhost:5000/";
   const [modal, setModal] = useState(true);
   const [username, setUsername] = useState("");
+  const [newUser, setNewUser] = useState(false);
+  let history = useHistory();
 
   // const [participants] = useCollectionData(query, { idField: 'id' });
 
@@ -29,6 +32,22 @@ function SessionPage(props) {
     })
     .then((response) => {
       console.log(response);
+      let res = response.data;
+      if (res.newUser) {
+        setNewUser(true);
+      }
+      setModal(false);
+      if (res.newUser) {
+        history.push({
+          pathname: '/onboarding/'+username,
+        });
+      }
+      else {
+        history.push({
+          pathname: '/recs/',
+        });
+      }
+
     })
     .catch((err) => {
       console.log(err);
@@ -68,7 +87,7 @@ function SessionPage(props) {
                     <div className="mb-0 pt-0">
                         {/* <FormLabel component="legend" className="text-black text-3xl">Shipping Method</FormLabel> */}
                         <h3 className="text-xl mb-2">
-                          Enter Username
+                          Enter username 
                         </h3>
                         <input 
                           onChange={(e) => {
@@ -77,23 +96,12 @@ function SessionPage(props) {
                           value={username}
                           className="shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         </input>
-                        <button onClick={handleLogin} className="mr-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                          Login
-                        </button>
-                        
                     </div>
                   </div>
                   {/*footer*/}
                   <div className="flex items-center justify-end p-3 border-t border-solid border-gray-300 rounded-b">
-                    <button
-                      className="bg-green-500 text-white font-bold active:bg-green-600 uppercase px-2 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-0"
-                      type="button"
-                      style={{ transition: "all .15s ease" }}
-                      onClick={() => {
-
-                      }}
-                    >
-                      Sign up instead
+                    <button onClick={handleLogin} className="mr-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                      Login/Signup
                     </button>
                     {/* <button
                       className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-0"

@@ -38,7 +38,7 @@ def login():
   if doc.exists:
     print(f'Document data: {doc.to_dict()}')
     result = doc.to_dict()
-    return jsonify({"success": True, "id": result.id, "newUser": False })
+    return jsonify({"success": True, "id": result['id'], "newUser": False })
 
   else:
     print(u'No such document!')
