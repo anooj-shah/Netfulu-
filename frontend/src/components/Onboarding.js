@@ -9,6 +9,7 @@ function Onboarding(props){
     .then(response => {
       let names = response.data.movie_names;
       let ids = response.data.id;
+      // TODO: make id state
       setMovies(names);
     })
     .catch(err => {
@@ -19,6 +20,7 @@ function Onboarding(props){
     <div>
       {
         movies && movies.map((movie) => {
+          //TODO include ID's in the component
           return( <OnboardingMovie
                     movieName = {movie}
                   />)
