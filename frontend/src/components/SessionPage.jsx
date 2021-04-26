@@ -39,12 +39,12 @@ function SessionPage(props) {
       setModal(false);
       if (res.newUser) {
         history.push({
-          pathname: '/onboarding/'+username,
+          pathname: '/onboarding/'+ sessionId + "/"+username,
         });
       }
       else {
         history.push({
-          pathname: '/recs/',
+          pathname: '/recs/'+ sessionId + "/" + username,
         });
       }
 

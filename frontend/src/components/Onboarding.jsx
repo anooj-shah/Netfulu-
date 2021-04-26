@@ -18,10 +18,8 @@ function Onboarding(props){
                   />)
         })
       }
-
     </div>
   )
-  
 }
 
 export default Onboarding;
