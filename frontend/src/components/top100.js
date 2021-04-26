@@ -22,7 +22,7 @@ const top100=[{name: "The Million Dollar Hotel",image:"https://imdb-api.com/imag
 {name: "Der Tunnel",image:"https://imdb-api.com/images/original/MV5BMDcwMzgzNmQtNTM0OS00MGNjLWI5MTMtZmVmMzg5Yjk5YjkyXkEyXkFqcGdeQXVyMzg1ODEwNQ@@._V1_Ratio0.7273_AL_.jpg",id: "3578"},
 {name: "Batman Returns",image:"https://imdb-api.com/images/original/MV5BOGZmYzVkMmItM2NiOS00MDI3LWI4ZWQtMTg0YWZkODRkMmViXkEyXkFqcGdeQXVyODY0NzcxNw@@._V1_Ratio0.7273_AL_.jpg",id: "364"},
 {name: "Bang Boom Bang - Ein todsicheres Ding",image:"https://imdb-api.com/images/original/MV5BMjA1ODk2NjE1OV5BMl5BanBnXkFtZTcwMDg4ODgxMQ@@._V1_Ratio0.7273_AL_.jpg",id: "344"},
-{name: "La belle et la bête",image:"https://imdb-api.com/images/original/MV5BMTUwNjUxMTM4NV5BMl5BanBnXkFtZTgwODExMDQzMTI@._V1_Ratio0.7273_AL_.jpg",id: "648"},
+{name: "Beauty and the Beast",image:"https://imdb-api.com/images/original/MV5BMTUwNjUxMTM4NV5BMl5BanBnXkFtZTgwODExMDQzMTI@._V1_Ratio0.7273_AL_.jpg",id: "648"},
 {name: "...Più forte ragazzi!",image:"https://imdb-api.com/images/original/MV5BMzQ2YmZmOTgtODE5YS00YWIwLTg2MGItMTc4NzAzMzQ0NzJkXkEyXkFqcGdeQXVyMjU5OTg5NDc@._V1_Ratio0.7273_AL_.jpg",id: "1721"},
 {name: "Rope",image:"https://imdb-api.com/images/original/MV5BYWFjMDNlYzItY2VlMS00ZTRkLWJjYTEtYjI5NmFlMGE3MzQ2XkEyXkFqcGdeQXVyNjc1NTYyMjg@._V1_Ratio0.7273_AL_.jpg",id: "1580"},
 {name: "To Kill a Mockingbird",image:"https://imdb-api.com/images/original/MV5BNmVmYzcwNzMtMWM1NS00MWIyLThlMDEtYzUwZDgzODE1NmE2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_Ratio0.7273_AL_.jpg",id: "595"},

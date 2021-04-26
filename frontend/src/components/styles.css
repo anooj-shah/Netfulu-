@@ -4,8 +4,8 @@
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
-  width: 100vw;
   padding: 100px;
+  font-family: 'roboto';
 }
 .movie-img{
   width: 150px;
@@ -39,3 +39,15 @@
   transform: scale(1.05);
   
 } 
+
+.submit-button{
+  margin-left: 100%;
+  margin-right: 100%;
+  overflow: hidden;
+}
+.onboarding-header{
+  width: 100%;
+  text-align: center;
+  padding-bottom: 30px;
+  font-size: 3rem;
+}
