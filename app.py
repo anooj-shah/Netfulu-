@@ -4,6 +4,8 @@ from flask_restful import Api, Resource, reqparse
 from flask_cors import CORS 
 from firebase_admin import credentials, firestore, initialize_app
 import uuid
+import pandas as pd
+from concurrent import futures
 
 
 app = Flask(__name__, static_url_path='', static_folder='frontend/build')
@@ -25,6 +27,13 @@ def serve(path):
 def home():
   object1 = {"yp": "yo", "yo": "yo"}
   return object1
+
+@app.route("/getMovies", methods=['GET'])
+def getMovies():
+  samples = movies.sample(n=50)
+  res = {"movie_names": samples.original_title.to_numpy().tolist(), "id": samples.id.to_numpy().tolist()}
+  print(res)
+  return jsonify(res), 200
 
 @app.route('/login', methods=['POST'])
 def login():
