@@ -1,8 +1,17 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import OnboardingMovie from './OnboardingMovie';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useParams, 
+  useHistory
+} from "react-router-dom";
 
-function Onboarding(props){
+function Onboarding(props) {
+  let { username, sessionId } = useParams();
   const [movies,setMovies] = useState([]);
   useEffect(()=>{
     axios.get('http://localhost:5000/getMovies')
@@ -16,20 +25,20 @@ function Onboarding(props){
       console.log("Error", err);
     })
   }, []);
+
   return (
     <div>
       {
         movies && movies.map((movie) => {
-          //TODO include ID's in the component
-          return( <OnboardingMovie
-                    movieName = {movie}
-                  />)
+          // TODO include ID's in the component
+          return ( 
+            <OnboardingMovie
+              movieName = {movie}
+            />)
         })
       }
-
     </div>
   )
-  
 }
 
 export default Onboarding;
