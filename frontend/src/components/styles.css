@@ -1,3 +1,41 @@
-.clicked {
-  color: #1111ef;
+
+.movie-holder{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100vw;
+  padding: 100px;
 }
+.movie-img{
+  width: 150px;
+  margin: auto;
+}
+.movie-card{
+  width: 200px;
+  height: 300px;
+  display: inline-block;
+  background: #cacaca;
+  padding: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 30px;
+  transition-duration: 0.05s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.movie-name{
+  text-align: center;
+  margin: auto;
+}
+
+/* .movie-card.clicked .movie-name{
+  
+}  */
+.movie-card.clicked{
+  background-color: #1b964e;
+  filter: sepia(10%); 
+  transform: scale(1.05);
+  
+} 

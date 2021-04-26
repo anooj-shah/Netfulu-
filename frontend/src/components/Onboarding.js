@@ -1,28 +1,20 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import OnboardingMovie from './OnboardingMovie';
+import top100 from './top100';
+import './styles.css';
 
 function Onboarding(props){
-  const [movies,setMovies] = useState([]);
-  useEffect(()=>{
-    axios.get('http://localhost:5000/getMovies')
-    .then(response => {
-      let names = response.data.movie_names;
-      let ids = response.data.id;
-      // TODO: make id state
-      setMovies(names);
-    })
-    .catch(err => {
-      console.log("Error", err);
-    })
-  }, []);
+
   return (
-    <div>
+    <div className="movie-holder">
       {
-        movies && movies.map((movie) => {
+        top100.map((movie) => {
           //TODO include ID's in the component
           return( <OnboardingMovie
-                    movieName = {movie}
+                    movieName = {movie.name}
+                    movieId = {movie.id}
+                    movieImg = {movie.image}
                   />)
         })
       }
