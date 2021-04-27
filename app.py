@@ -28,14 +28,21 @@ def home():
   object1 = {"yp": "yo", "yo": "yo"}
   return object1
 
-@app.route("/getMovies", methods=['GET'])
-def getMovies():
-  samples = movies.sample(n=50)
-  res = {"movie_names": samples.original_title.to_numpy().tolist(), "id": samples.id.to_numpy().tolist()}
-  print(res)
-  return jsonify(res), 200
+@app.route('/savePreferences', methods=['GET','POST'])
+def savePreferences():
+  print(request.method)
+  body = request.json
+  username = body['user']
+  likes = body['likes']
+  print("body:")
+  print(body)
+  print(likes)
+  users_ref.document(username).set({
+    "likes": likes
+  })
+  return jsonify({"success": True})
 
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['POST','OPTIONS'])
 def login():
   # check if they are already in the db
   body = request.json

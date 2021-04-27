@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import OnboardingMovie from './OnboardingMovie';
+import {useParams} from "react-router-dom";
 import top100 from './top100';
 import './styles.css';
 
 function Onboarding(props){
-  const [liked,setLiked] = useState([])
+  const [liked,setLiked] = useState([]);
+  const {username} = useParams();
   function addId(id){
     setLiked(liked.concat(+id))
   }
@@ -17,9 +19,13 @@ function Onboarding(props){
     })));
     setLiked(Array.from(liked.filter((j)=> +id !==+j)));
   }
-
   function submit(){
     //post the liked id's
+    let url = "http://localhost:5000";
+    axios.post(url+"/savePreferences", {
+      likes: liked,
+      user: username
+    });
   }
 
   return (
