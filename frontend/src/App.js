@@ -4,6 +4,7 @@ import HomePage from './components/HomePage';
 import SessionPage from './components/SessionPage';
 import Onboarding from './components/Onboarding';
 import RecsPage from './components/RecsPage';
+import './components/index.css';
 
 function App() {
   return (

@@ -68,7 +68,7 @@ function SessionPage(props) {
                 <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                   {/*header*/}
                   <div className="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t">
-                    <h3 className="text-3xl font-semibold">
+                    <h3 className="text-black text-3xl font-semibold">
                       Login/ Sign Up
                     </h3>
                     <button
@@ -86,7 +86,7 @@ function SessionPage(props) {
                   <div className="relative p-4 flex-auto w-full">
                     <div className="mb-0 pt-0">
                         {/* <FormLabel component="legend" className="text-black text-3xl">Shipping Method</FormLabel> */}
-                        <h3 className="text-xl mb-2">
+                        <h3 className="text-black text-xl mb-2">
                           Enter username 
                         </h3>
                         <input 
@@ -124,12 +124,12 @@ function SessionPage(props) {
           <div className="flex flex-col justify-center items-center">
             <div className="flex flex-col items-center justify-center">
               <div class="flex">
-                <p className="text-black font-bold py-2 px-4 mt-4 text-4xl focus:outline-none">Share with friends:</p>
-                <Link className="text-black font-bold bg-blue-200 py-2 px-4 mt-4 text-4xl focus:outline-none rounded-lg" to = {sessionId}>{url+sessionId}</Link>
+                <p className="font-bold py-2 px-4 mt-4 text-4xl focus:outline-none">Share with friends:</p>
+                <Link className="font-bold bg-blue-200 py-2 px-4 mt-4 text-4xl focus:outline-none rounded-lg" to = {sessionId}>{url+sessionId}</Link>
               </div>
               <br />
               <div>
-                <h1 className="text-black font-bold py-2 px-4 mt-4 text-3xl text-center focus:outline-none">Participants:</h1>
+                <h1 className="font-bold py-2 px-4 mt-4 text-3xl text-center focus:outline-none">Participants:</h1>
                 {
                   participants && (participants.length !== 0) 
                   ? 
