@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import OnboardingMovie from './OnboardingMovie';
-import {useParams} from "react-router-dom";
+import {useParams, useHistory} from "react-router-dom";
 import top100 from './top100';
 import './styles.css';
 
 function Onboarding(props){
   const [liked,setLiked] = useState([]);
-  const {username} = useParams();
+  const {sessionId, username} = useParams();
+  const history = useHistory();
   function addId(id){
     setLiked(liked.concat(+id))
   }
@@ -25,6 +26,10 @@ function Onboarding(props){
     axios.post(url+"/savePreferences", {
       likes: liked,
       user: username
+    }).then((res)=>{
+      history.push({
+        pathname: "/recs/"+username+"/"+sessionId,
+      });
     });
   }
 
@@ -44,10 +49,14 @@ function Onboarding(props){
                   />)
         })
       }
+      
+    </div>
+
+    <div className="button-holder">
       <button class="bg-green-700 text-white font-bold py-2 px-4 mt-4 text-5xl focus:outline-none rounded rounded-lg flex-none submit-button" onClick={submit}>
                 Submit
       </button>
-    </div>
+    </div>   
     
     </>
   )
