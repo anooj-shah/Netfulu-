@@ -24,6 +24,7 @@ import axios from 'axios';
     })
   }
   return (
+    <>
     <div className="w-full h-full absolute top-0 left-0">
       <div className="w-screen h-screen absolute top-0 left-0">
         <div className="h-full w-full absolute top-0 left-0 flex flex-row items-center justify-center">
@@ -38,5 +39,6 @@ import axios from 'axios';
         </div>
       </div>
     </div>
+    </>
   )
 }

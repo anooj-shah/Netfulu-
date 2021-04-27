@@ -42,7 +42,7 @@ def savePreferences():
   })
   return jsonify({"success": True})
 
-@app.route('/login', methods=['POST','OPTIONS'])
+@app.route('/login', methods=['POST'])
 def login():
   # check if they are already in the db
   body = request.json
