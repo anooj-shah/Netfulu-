@@ -34,13 +34,9 @@ def home():
 
 @app.route('/savePreferences', methods=['GET','POST'])
 def savePreferences():
-  print(request.method)
   body = request.json
   username = body['user']
   likes = body['likes']
-  print("body:")
-  print(body)
-  print(likes)
   users_ref.document(username).set({
     "likes": likes
   })
