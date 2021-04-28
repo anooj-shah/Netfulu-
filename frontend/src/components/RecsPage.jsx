@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { firestore } from './firebaseContext';
+import RecMovie  from './RecMovie';
 
 function RecsPage() {
   let { sessionId, username } = useParams();
@@ -98,9 +99,8 @@ function RecsPage() {
               recommendations && (recommendations.length !== 0) 
               ? 
                 (recommendations.map((r) => 
-                <div className="recommendation text-black">
-                  {r.name}  
-                </div>))
+                  <RecMovie movieName={r.name} />
+                ))
               :
               <div className="text-xl font-bold">
                 There are currently no recommendations!

@@ -37,7 +37,7 @@ import axios from 'axios';
       <div className="half description">
         <div className="instruction-container text-4xl">
           <p>
-            We'll take care of the recomendations... you take care of the chill 😉
+            We'll take care of the recommendations... you take care of the chill 😉
           </p>
         </div>
       </div>

@@ -96,7 +96,7 @@ body{
   grid-template-rows: 200px auto;
   grid-template-areas:'participants title'
                       'participants recs';
-  min-height: calc(100vh - 100px)
+  min-height: calc(100vh - 100px);
 }
 .recs-participants{
   grid-area: participants;
@@ -121,4 +121,8 @@ body{
   grid-area: recs;
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }

@@ -137,11 +137,14 @@ def get_group_prediction_mat(num_movie=19700):
 
   # print("TITLES", movie_title_dict)
   top50_movie_names = []
+  ctr=0
   for i in range(len(movie_id_top_50)):
     top50_movie_names.append(movie_title_dict[movie_id_top_50[i]])
-    sessions_ref.document(sessionId).collection("recommendations").document().set({
-      'name': movie_title_dict[movie_id_top_50[i]]
-    })
+    if(ctr<5):
+      sessions_ref.document(sessionId).collection("recommendations").document().set({
+        'name': movie_title_dict[movie_id_top_50[i]]
+      })
+      ctr+=1
 
   return jsonify({"success": True, "top50names": top50_movie_names })
 
