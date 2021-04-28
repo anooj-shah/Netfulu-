@@ -15,7 +15,11 @@ export default function OnboardingMovie(props){
     })
   },[])
   function openIMDB(){
+    const url = "https://www.imdb.com/title/";
+    if(id!=""){
+      window.open(url+id,'_blank');
 
+    }
   }
   return (
       <div className = {"movie-card"} onClick={openIMDB}>
