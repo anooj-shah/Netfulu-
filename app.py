@@ -69,9 +69,10 @@ def join():
   session = body['session']
   session_ref = sessions_ref.document(session)
   participant_collection = session_ref.document.collection("participants")
-  if participant_collection.get().add({
+  participant_collection.get().add({
     user: username
   })
+  return jsonify({"success": True })
   
 
 @app.route('/createSession', methods=['GET'])
