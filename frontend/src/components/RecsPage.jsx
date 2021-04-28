@@ -90,7 +90,7 @@ function RecsPage() {
                 }
           </div>
           <div className='recs'>
-
+              
           </div>
   </div>
 
