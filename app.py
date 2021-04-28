@@ -62,7 +62,17 @@ def login():
     users_ref.document(username).set({})
     return jsonify({"success": True, "newUser": True })
 
-
+@app.route('/joinSession', methods=['POST'])
+def join():
+  body = request.json
+  username = body['user']
+  session = body['session']
+  session_ref = sessions_ref.document(session)
+  participant_collection = session_ref.document.collection("participants")
+  if participant_collection.get().add({
+    user: username
+  })
+  
 
 @app.route('/createSession', methods=['GET'])
 def create():
