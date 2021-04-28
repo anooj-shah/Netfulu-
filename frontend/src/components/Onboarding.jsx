@@ -28,7 +28,7 @@ function Onboarding(props){
       user: username
     }).then((res)=>{
       history.push({
-        pathname: "/session/"+username+"/"+sessionId,
+        pathname: "/recs/"+username+"/"+sessionId,
       });
     });
   }
