@@ -52,6 +52,7 @@ function RecsPage() {
   const [participants] = useCollectionData(firestore.collection('sessions').doc(sessionId).collection('participants'));
   console.log("participants", participants);
 
+  const [recommendations] = useCollectionData(firestore.collection('sessions').doc(sessionId).collection('recommendations'));
 
   return (
   <div className="RecsPage">
@@ -65,6 +66,7 @@ function RecsPage() {
                 </button>
                 
               </div>
+              
               <button class="bg-blue-700 text-white font-bold py-2 px-4 mt-4 text-4xl focus:outline-none rounded rounded-lg" 
                 onClick={generateRecommendations}
               >
@@ -90,7 +92,18 @@ function RecsPage() {
                 }
           </div>
           <div className='recs'>
-              
+            {
+              recommendations && (recommendations.length !== 0) 
+              ? 
+                (recommendations.map((r) => 
+                <div className="recommendation text-black">
+                  {r.name}  
+                </div>))
+              :
+              <div className="text-xl font-bold">
+                There are currently no recommendations!
+              </div>
+            }
           </div>
   </div>
 
