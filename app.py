@@ -10,7 +10,7 @@ from numpy import asarray
 from numpy import save
 from numpy import load
 import numpy as np
-import pickle
+import pickle5 as pickle
 
 app = Flask(__name__, static_url_path='', static_folder='frontend/build')
 CORS(app) #comment this on deployment
@@ -85,7 +85,7 @@ def create():
     return f"An Error Occured: {e}"
 
 @app.route('/getGroupPredictionMat', methods=['POST'])
-def get_group_prediction_mat(users, num_movie=19700):
+def get_group_prediction_mat(num_movie=19700):
   pickle_in = open("./movie_old2new_id_dict.pkl","rb")
   movie_old2new_id_dict = pickle.load(pickle_in)
   movie_new2old_id_dict = {}
@@ -112,12 +112,29 @@ def get_group_prediction_mat(users, num_movie=19700):
       group_predictions[i] += predictions_mat[j][i]
     
   # Get 50 highest rated movies
-  top_50 = np.argsort(average_ratings)[-50:] # ID of 50 movies with the highest total preference
+  top_50 = np.argsort(group_predictions)[-50:] # ID of 50 movies with the highest total preference
   movie_id_top_50 = []
+
+  movie_pickle_in = open("./movies_metadata.pkl","rb")
+  movie_data_df = pickle.load(movie_pickle_in)
+
+  movie_title_in = open("./title_movieId_dict.pkl","rb")
+  movie_title_dict = pickle.load(movie_title_in)
+
   for i in range(len(top_50)):
-    movie_id_top_50.append(movie_new2old_id_dict[top_50[i]])
-  
-  return movie_id_top_50
+    old_movie_id = movie_new2old_id_dict[top_50[i]]
+    if old_movie_id in movie_data_df["movieId"].values:
+      movie_id_top_50.append(int(old_movie_id))
+  print(movie_id_top_50, type(movie_id_top_50[0]))
+
+
+  print("TITLES", movie_title_dict)
+  top50_movie_names = []
+  for i in range(len(movie_id_top_50)):
+    top50_movie_names.append(movie_title_dict[movie_id_top_50[i]])
+
+  return jsonify({"success": True, "top50names": top50_movie_names })
+
 
 @app.route('/getUserPredictionMat', methods=['POST'])
 def get_prediction_mat(num_movie=19700):

@@ -26,6 +26,7 @@ function RecsPage() {
   }, [])
 
   function generateRecommendations() {
+    console.log("YPPPP", participants.length, participants)
     let users = [];
     for (let i = 0; i < participants.length; i++) {
       users.push(participants[i].username);
@@ -33,6 +34,12 @@ function RecsPage() {
     console.log(users);
     axios.post(url+'/getGroupPredictionMat', {
       users: users
+    })
+    .then((response) => {
+      console.log(response.data);
+    })
+    .catch((err) => {
+      console.log("Error");
     })
   }
 

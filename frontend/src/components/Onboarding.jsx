@@ -23,12 +23,15 @@ function Onboarding(props){
   function submit(){
     //post the liked id's
     let url = "http://localhost:5000";
-    axios.post(url+"/savePreferences", {
-      likes: liked,
-      user: username
+    // axios.post(url+"/savePreferences", {
+    //   likes: liked,
+    //   user: username
+    axios.post(url+"/getUserPredictionMat", {
+      username: username,
+      likedMovies: liked
     }).then((res)=>{
       history.push({
-        pathname: "/recs/"+username+"/"+sessionId,
+        pathname: "/recs/"+sessionId+"/"+username,
       });
     });
   }
