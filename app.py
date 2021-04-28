@@ -139,7 +139,7 @@ def get_group_prediction_mat(num_movie=19700):
   top50_movie_names = []
   for i in range(len(movie_id_top_50)):
     top50_movie_names.append(movie_title_dict[movie_id_top_50[i]])
-    sessions_ref.document(sessionId).collection("recomendations").document().set({
+    sessions_ref.document(sessionId).collection("recommendations").document().set({
       'name': movie_title_dict[movie_id_top_50[i]]
     })
 
