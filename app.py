@@ -54,15 +54,14 @@ def login():
   if doc.exists:
     print(f'Document data: {doc.to_dict()}')
     result = doc.to_dict()
-    return jsonify({"success": True, "id": result['id'], "newUser": False })
+    return jsonify({"success": True, "newUser": False })
 
   else:
     print(u'No such document!')
     userId = uuid.uuid4().hex[:6]
-    users_ref.document(username).set({
-      "id": userId
-    })
-    return jsonify({"success": True, "id": userId, "newUser": True })
+    users_ref.document(username).set({})
+    return jsonify({"success": True, "newUser": True })
+
 
 
 @app.route('/createSession', methods=['GET'])

@@ -44,7 +44,7 @@ function SessionPage(props) {
       }
       else {
         history.push({
-          pathname: '/recs/'+ sessionId + "/" + username,
+          pathname: '/session/'+ sessionId + "/" + username,
         });
       }
 
