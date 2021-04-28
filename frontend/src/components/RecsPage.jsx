@@ -23,6 +23,7 @@ function RecsPage() {
     navigator.clipboard.writeText(destination);
   }
   useEffect(() => {
+    console.log("SessionId", sessionId)
     axios.post(url + '/joinSession', {
       user: username,
       session: sessionId
