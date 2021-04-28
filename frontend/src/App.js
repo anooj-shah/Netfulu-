@@ -8,6 +8,10 @@ import './components/index.css';
 
 function App() {
   return (
+    <>
+    <div className="header">
+      <div className="text-bold text-4xl">Netfulu++</div>
+    </div>
     <Router>
       <Switch>
         <Route exact path='/' component={HomePage} />
@@ -17,6 +21,7 @@ function App() {
 
       </Switch>
     </Router>
+    </>
   );
 }
 
