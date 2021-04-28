@@ -13,11 +13,15 @@ import { firestore } from './firebaseContext';
 
 function RecsPage() {
   let { sessionId, username } = useParams();
+  let homeURL = 'https://localhost:3000'
   let url = "http://localhost:5000";
   // const [username, setUsername] = useState("");
   const [newUser, setNewUser] = useState(false);
   let history = useHistory();
-
+  function copyURL(){
+    const destination = homeURL+'/session/'+sessionId;
+    navigator.clipboard.writeText(destination);
+  }
   useEffect(() => {
     axios.post(url + '/joinSession', {
       user: username,
@@ -57,7 +61,11 @@ function RecsPage() {
             <div className="flex flex-col items-center justify-center">
               <div class="flex mb-8">
                 <p className="font-bold py-2 px-4 mt-4 text-4xl focus:outline-none">Share with friends:</p>
-                <Link className="font-bold bg-blue-200 py-2 px-4 mt-4 text-4xl focus:outline-none rounded-lg" to = {sessionId}>{url+sessionId}</Link>
+                <button className="tooltip font-bold text-black bg-blue-200 py-2 px-4 mt-4 text-4xl focus:outline-none rounded-lg" onClick = {copyURL}>
+                  {homeURL+'/session/'+sessionId}
+                  <span class="tooltiptext text-sm">Click to copy</span>
+                </button>
+                
               </div>
               <button class="bg-blue-700 text-white font-bold py-2 px-4 mt-4 text-4xl focus:outline-none rounded rounded-lg" 
                 onClick={generateRecommendations}
