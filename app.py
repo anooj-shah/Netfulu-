@@ -98,6 +98,7 @@ def get_group_prediction_mat(num_movie=19700):
   body = request.json
   print(body)
   users = body['users']
+  sessionId = body['session']
   for username in users:
     doc_ref = db.collection(u'users').document(username)
     doc = doc_ref.get()
@@ -138,6 +139,9 @@ def get_group_prediction_mat(num_movie=19700):
   top50_movie_names = []
   for i in range(len(movie_id_top_50)):
     top50_movie_names.append(movie_title_dict[movie_id_top_50[i]])
+    sessions_ref.document(sessionId).collection("recomendations").document().set({
+      'name': movie_title_dict[movie_id_top_50[i]]
+    })
 
   return jsonify({"success": True, "top50names": top50_movie_names })
 
