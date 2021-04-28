@@ -5,7 +5,7 @@ export default function OnboardingMovie(props){
   const [movieImg, setImage] = useState("");
   const [id, setId] = useState("");
   useEffect(()=>{
-    const IMDB_API_KEY_HERE = "k_4p8epvow"
+    const IMDB_API_KEY_HERE = "k_yzrug75g"
     const imdb_url = "https://imdb-api.com/en/API/SearchMovie/"+IMDB_API_KEY_HERE+"/"
     axios.get(imdb_url+props.movieName)
     .then((res)=>{
