@@ -14,10 +14,10 @@ import RecMovie  from './RecMovie';
 
 function RecsPage() {
   let { sessionId, username } = useParams();
-  let homeURL = 'https://localhost:3000'
+  let homeURL = 'http://localhost:3000'
   let url = "http://localhost:5000";
   // const [username, setUsername] = useState("");
-  const [newUser, setNewUser] = useState(false);
+  const [loading, setLoading] = useState(false);
   let history = useHistory();
   function copyURL(){
     const destination = homeURL+'/session/'+sessionId;
@@ -38,11 +38,13 @@ function RecsPage() {
       users.push(participants[i].username);
     }
     console.log(users);
+    setLoading(true);
     axios.post(url+'/getGroupPredictionMat', {
       users: users,
       session: sessionId
     })
     .then((response) => {
+      setLoading(false);
       console.log(response.data);
     })
     .catch((err) => {
@@ -94,9 +96,9 @@ function RecsPage() {
                   </div>
                 }
           </div>
-          <div className='recs'>
+          <div className={'recs '+ (loading ? "load": "")}>
             {
-              recommendations && (recommendations.length !== 0) 
+              recommendations && (recommendations.length == 5) 
               ? 
                 (recommendations.map((r) => 
                   <RecMovie movieName={r.name} />
