@@ -68,9 +68,9 @@ def join():
   username = body['user']
   session = body['session']
   session_ref = sessions_ref.document(session)
-  participant_collection = session_ref.document.collection("participants")
-  participant_collection.get().add({
-    user: username
+  participant_collection = session_ref.collection("participants")
+  participant_collection.document().set({
+    "username": username
   })
   return jsonify({"success": True })
   
