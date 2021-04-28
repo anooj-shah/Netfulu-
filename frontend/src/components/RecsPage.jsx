@@ -37,7 +37,8 @@ function RecsPage() {
     }
     console.log(users);
     axios.post(url+'/getGroupPredictionMat', {
-      users: users
+      users: users,
+      session: sessionId
     })
     .then((response) => {
       console.log(response.data);
