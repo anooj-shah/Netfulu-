@@ -15,7 +15,12 @@ import pickle5 as pickle
 app = Flask(__name__, static_url_path='', static_folder='frontend/build')
 CORS(app) #comment this on deployment
 api = Api(app)
-
+ignore = [318,2959,58559,4993,260,296,527,593,858,68954,4226,2762,48780,143355,3578,4973,74458,2028,1682,44191,4886,110,4896,111759,4995,8368,8961,1721,40815,54001,5618,1265,166643,293,480,5816,1580,1732,4011,1089,84152,364,8874,608,1213,77561,45722,541,778,780,6934,86332,8665,5995,2324,6373,46578,1246,85414,588,1961,586,48385,3114,2011,41566,6016,54503,81847,47099,135536,924,111,30793,30707,97938,1653,47610,2115,88744,169864,2291,49530,2012,7451,595,150,94959,96821,597,750,2,2617,1968,31658,51540,31696,457,93840,31685]
+pickle_in = open("./movie_old2new_id_dict.pkl","rb")
+movie_old2new_id_dict = pickle.load(pickle_in)
+movie_new2old_id_dict = {}
+for key in movie_old2new_id_dict:
+  movie_new2old_id_dict[movie_old2new_id_dict[key]] = key
 cred = credentials.Certificate('./keys.json')
 default_app = initialize_app(cred)
 db = firestore.client()
@@ -88,11 +93,7 @@ def create():
 
 @app.route('/getGroupPredictionMat', methods=['POST'])
 def get_group_prediction_mat(num_movie=19700):
-  pickle_in = open("./movie_old2new_id_dict.pkl","rb")
-  movie_old2new_id_dict = pickle.load(pickle_in)
-  movie_new2old_id_dict = {}
-  for key in movie_old2new_id_dict:
-    movie_new2old_id_dict[movie_old2new_id_dict[key]] = key 
+   
   predictions_mat = []
   body = request.json
   print(body)
@@ -114,7 +115,8 @@ def get_group_prediction_mat(num_movie=19700):
       group_predictions[i] += predictions_mat[j][i]
     
   # Get 50 highest rated movies
-  top_50 = np.argsort(group_predictions)[-50:] # ID of 50 movies with the highest total preference
+  top_50 = np.argsort(group_predictions)[-300:] # ID of 50 movies with the highest total preference
+  print(top_50)
   movie_id_top_50 = []
 
   movie_pickle_in = open("./movies_metadata.pkl","rb")
@@ -127,10 +129,12 @@ def get_group_prediction_mat(num_movie=19700):
     old_movie_id = movie_new2old_id_dict[top_50[i]]
     if old_movie_id in movie_data_df["movieId"].values:
       movie_id_top_50.append(int(old_movie_id))
-  print(movie_id_top_50, type(movie_id_top_50[0]))
+    if(len(movie_id_top_50)>=50):
+      break;
+  print(movie_id_top_50)
 
 
-  print("TITLES", movie_title_dict)
+  # print("TITLES", movie_title_dict)
   top50_movie_names = []
   for i in range(len(movie_id_top_50)):
     top50_movie_names.append(movie_title_dict[movie_id_top_50[i]])
@@ -157,7 +161,8 @@ def get_prediction_mat(num_movie=19700):
     new_user[movie_old2new_id_dict[movie_id]] = 1.0
   new_user_latent_factors = np.matmul(new_user, dataQ)
   new_user_prediction_mat = np.matmul(new_user_latent_factors, dataQ.T)
-  
+  for i in ignore:
+    new_user_prediction_mat[movie_old2new_id_dict[i]] = 0
   # Add to firestore
   doc_ref = db.collection(u'users').document(username)
   doc = doc_ref.get()
