@@ -16,6 +16,7 @@ app = Flask(__name__, static_url_path='', static_folder='frontend/build')
 CORS(app) #comment this on deployment
 api = Api(app)
 
+
 cred = credentials.Certificate('./keys.json')
 default_app = initialize_app(cred)
 db = firestore.client()
