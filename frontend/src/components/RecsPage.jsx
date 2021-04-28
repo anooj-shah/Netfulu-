@@ -54,10 +54,8 @@ function RecsPage() {
 
 
   return (
-    <div className="w-full h-full absolute top-0 left-0">
-      <div className="w-screen h-screen absolute top-0 left-0">
-        <div className="h-full w-full absolute top-0 left-0 flex flex-row items-center justify-center">
-          <div className="flex flex-col justify-center items-center">
+  <div className="RecsPage">
+          <div className="recs-rest flex flex-col justify-center items-center">
             <div className="flex flex-col items-center justify-center">
               <div class="flex mb-8">
                 <p className="font-bold py-2 px-4 mt-4 text-4xl focus:outline-none">Share with friends:</p>
@@ -73,13 +71,16 @@ function RecsPage() {
                 Generate Recommendations
               </button>
               <br />
-              <div>
-                <h1 className="font-bold py-2 px-4 mt-4 text-3xl text-center focus:outline-none">Participants:</h1>
+              
+            </div>
+          </div>
+          <div className='recs-participants'>
+                <h1 className="part-title font-bold text-black mt-4 text-3xl focus:outline-none">Participants:</h1>
                 {
                   participants && (participants.length !== 0) 
                   ? 
                     (participants.map((p) => 
-                    <div>
+                    <div className="participant text-black">
                       {p.username}  
                     </div>))
                   :
@@ -87,13 +88,12 @@ function RecsPage() {
                     There are currently no participants!
                   </div>
                 }
-
-              </div>
-            </div>
           </div>
-        </div>
-      </div>
-    </div>
+          <div className='recs'>
+
+          </div>
+  </div>
+
   )
 }
 

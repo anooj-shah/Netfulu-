@@ -6,7 +6,7 @@
   flex-wrap: wrap;
   flex-direction: row;
   padding: 100px;
-  height: calc(100vh - 100px);
+  height: calc(100vh - 200px);
   overflow: scroll;
   padding-top: 10px;
   padding-bottom: 10px;
